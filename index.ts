@@ -20,12 +20,14 @@ const calcOne = async (numb: number): Promise<void> => {
 };
 
 const start = () => {
-  if (calculationInput.length > 0 && Object.keys(pendingRequests).length < 5) {
-    const numb = calculationInput.pop();
-    pendingRequests[numb] = true;
-    calcOne(numb);
+  if (calculationInput.length > 0) {
+    if (Object.keys(pendingRequests).length < 5) {
+      const numb = calculationInput.pop();
+      pendingRequests[numb] = true;
+      calcOne(numb);
+    }
+    setTimeout(() => start(), 500);
   }
-  setTimeout(() => start(), 500);
 };
 
 setTimeout(start, 500);
